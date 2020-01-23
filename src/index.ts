@@ -4,18 +4,19 @@ import Logger from "./logger";
 import bodyParser from "koa-bodyparser";
 import { createConnection } from "typeorm";
 
+const logger = new Logger();
+
 createConnection({
     type: "postgres",
     database: "scorebloq",
     entities: ["models/*.ts"],
     synchronize: true,
     logging: true,
-    logger: new Logger(),
+    logger,
 })
-    .then(async () => {
+    .then(() => {
         const app = new Koa();
         app.use(bodyParser());
-
         app.listen(8080);
     })
-    .catch(console.error);
+    .catch(logger.fatal);
