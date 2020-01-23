@@ -4,8 +4,13 @@ import { Logger as TOLogger } from "typeorm";
 const logger = getLogger();
 logger.level = process.env.NODE_ENV === "production" ? "info" : "trace";
 configure({
-    appenders: { file: { type: "file", filename: "scorebloq" } },
-    categories: { default: { appenders: ["file"], level: logger.level } },
+    appenders: {
+        stdout: { type: "stdout" },
+        file: { type: "file", filename: "scorebloq.log" },
+    },
+    categories: {
+        default: { appenders: ["stdout", "file"], level: logger.level },
+    },
 });
 
 export default class Logger implements TOLogger {
