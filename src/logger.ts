@@ -1,17 +1,20 @@
 import { Logger as L4JSLogger, configure, getLogger } from "log4js";
 import { Logger as TOLogger } from "typeorm";
 
-const logger = getLogger();
-logger.level = process.env.NODE_ENV === "production" ? "info" : "trace";
 configure({
     appenders: {
         stdout: { type: "stdout" },
         file: { type: "file", filename: "scorebloq.log" },
     },
     categories: {
-        default: { appenders: ["stdout", "file"], level: logger.level },
+        default: { appenders: ["stdout", "file"], level: "info" },
+        prod: { appenders: ["stdout", "file"], level: "info" },
+        dev: { appenders: ["stdout", "file"], level: "trace" },
     },
 });
+const logger = getLogger(
+    process.env.NODE_ENV === "production" ? "prod" : "dev"
+);
 
 export default class Logger implements TOLogger {
     private static logger: L4JSLogger = logger;
