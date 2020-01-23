@@ -17,7 +17,9 @@ export default class Score extends BaseEntity {
     @Column()
     score!: number;
 
-    @CreateDateColumn()
+    @CreateDateColumn({
+        type: "timestamp with time zone",
+    })
     created!: Date;
 
     @ManyToOne(

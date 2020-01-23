@@ -20,10 +20,14 @@ export default class User extends BaseEntity {
     })
     username!: string;
 
-    @CreateDateColumn()
+    @CreateDateColumn({
+        type: "timestamp with time zone",
+    })
     created!: Date;
 
-    @UpdateDateColumn()
+    @UpdateDateColumn({
+        type: "timestamp with time zone",
+    })
     updated!: Date;
 
     @OneToMany(

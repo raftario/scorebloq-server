@@ -48,7 +48,9 @@ export default class Map extends BaseEntity {
     @Column("text")
     beatmapCharacteristicName!: string;
 
-    @CreateDateColumn()
+    @CreateDateColumn({
+        type: "timestamp with time zone",
+    })
     created!: Date;
 
     @OneToMany(
