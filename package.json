@@ -1,12 +1,12 @@
 {
-    "name": "ts-node-boilerplate",
+    "name": "scorebloq",
     "version": "1.0.0",
-    "description": "Personal TypeScript + Node project boilerplate",
+    "description": "Small private cross-platform Beat Saber leaderboard",
     "author": "Raphaël Thériault <raphael_theriault@outlook.com>",
     "main": "src/index.ts",
     "license": "MIT",
-    "homepage": "https://github.com/raftario/ts-node-boilerplate",
-    "repository": "raftario/ts-node-boilerplate",
+    "homepage": "https://github.com/raftario/scorebloq-server",
+    "repository": "raftario/scorebloq-server",
     "scripts": {
         "start": "ts-node src/index.ts",
         "start:dev": "ts-node-dev src/index.ts",
