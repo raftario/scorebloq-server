@@ -7,6 +7,7 @@ import { createConnection } from "typeorm";
 createConnection({
     type: "postgres",
     database: "scorebloq",
+    entities: ["models/*.ts"],
     synchronize: true,
     logging: true,
     logger: new Logger(),
