@@ -43,3 +43,15 @@ export async function log(
     logger.debug(`${ctx.method} ${ctx.path}`);
     await next();
 }
+
+export async function catchall(
+    ctx: ParameterizedContext,
+    next: () => Promise<any>
+): Promise<void> {
+    try {
+        await next();
+    } catch (error) {
+        logger.error(error);
+        ctx.status = 500;
+    }
+}

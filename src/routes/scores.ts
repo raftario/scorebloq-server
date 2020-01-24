@@ -1,6 +1,8 @@
 import Router from "@koa/router";
 import Score from "../models/score";
+import bodyParser from "koa-bodyparser";
 import { id } from "../middlewares";
+import jwt from "koa-jwt";
 
 const router = new Router();
 
@@ -21,5 +23,19 @@ router.get("/:id", id, async (ctx) => {
         ctx.status = 404;
     }
 });
+
+interface PostScore {
+    score: number;
+    map: number;
+}
+
+router.post(
+    "/",
+    jwt({ secret: "secret" }),
+    bodyParser({ enableTypes: ["json"] }),
+    async (ctx) => {
+        ctx.body = 418;
+    }
+);
 
 export default router;

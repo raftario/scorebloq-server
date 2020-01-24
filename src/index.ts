@@ -1,11 +1,10 @@
 import "reflect-metadata";
-import { json, log } from "./middlewares";
+import { catchall, json, log } from "./middlewares";
 import Koa from "koa";
 import Map from "./models/map";
 import Router from "@koa/router";
 import Score from "./models/score";
 import User from "./models/user";
-import bodyParser from "koa-bodyparser";
 import { createConnection } from "typeorm";
 import logger from "./logger";
 import mapsRouter from "./routes/maps";
@@ -34,7 +33,7 @@ createConnection({
             )
             .use("/users", usersRouter.routes(), usersRouter.allowedMethods());
 
-        app.use(bodyParser())
+        app.use(catchall)
             .use(log)
             .use(json)
             .use(router.routes())

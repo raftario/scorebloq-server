@@ -22,10 +22,10 @@ export default class Map extends BaseEntity {
     id!: number;
 
     @Column({
-        type: "bytea",
+        length: 64,
         unique: true,
     })
-    hash!: Buffer;
+    hash!: string;
 
     @Column("text")
     songName!: string;
