@@ -1,5 +1,5 @@
-import Router from "@koa/router";
 import Map from "../models/map";
+import Router from "@koa/router";
 import { id } from "../middlewares";
 
 const router = new Router();

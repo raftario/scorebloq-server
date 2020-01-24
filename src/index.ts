@@ -1,16 +1,16 @@
 import "reflect-metadata";
+import { json, log } from "./middlewares";
 import Koa from "koa";
-import logger from "./logger";
 import Map from "./models/map";
+import Router from "@koa/router";
 import Score from "./models/score";
 import User from "./models/user";
 import bodyParser from "koa-bodyparser";
 import { createConnection } from "typeorm";
-import Router from "@koa/router";
-import usersRouter from "./routes/users";
+import logger from "./logger";
 import mapsRouter from "./routes/maps";
 import scoresRouter from "./routes/scores";
-import { json, log } from "./middlewares";
+import usersRouter from "./routes/users";
 
 createConnection({
     type: "postgres",
