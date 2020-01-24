@@ -16,11 +16,11 @@ const logger = getLogger(
     process.env.NODE_ENV === "production" ? "prod" : "dev"
 );
 
-export default class Logger implements TOLogger {
-    private static logger: L4JSLogger = logger;
+class Logger implements TOLogger {
+    private logger: L4JSLogger = logger;
 
     logQuery(query: string, parameters?: any[]): void {
-        logger.debug(
+        this.logger.debug(
             `SQL Query: ${query}${Logger.parametersToString(parameters)}`
         );
     }
@@ -28,7 +28,7 @@ export default class Logger implements TOLogger {
         logger.error(
             `Failed SQL Query: ${query}${Logger.parametersToString(parameters)}`
         );
-        logger.error(error);
+        this.logger.error(error);
     }
     logQuerySlow(time: number, query: string, parameters?: any[]): void {
         logger.warn(
@@ -38,7 +38,7 @@ export default class Logger implements TOLogger {
         );
     }
     logSchemaBuild(message: string): void {
-        logger.info(message);
+        this.logger.info(message);
     }
     logMigration(message: string): void {
         logger.info(message);
@@ -46,13 +46,13 @@ export default class Logger implements TOLogger {
     log(level: "log" | "info" | "warn", message: any): void {
         switch (level) {
             case "log":
-                logger.debug(message);
+                this.logger.debug(message);
                 break;
             case "info":
-                logger.info(message);
+                this.logger.info(message);
                 break;
             case "warn":
-                logger.warn(message);
+                this.logger.warn(message);
                 break;
             default:
                 throw new TypeError("Invalid log level");
@@ -72,21 +72,23 @@ export default class Logger implements TOLogger {
     }
 
     trace(message: string): void {
-        logger.trace(message);
+        this.logger.trace(message);
     }
     debug(message: string): void {
-        logger.debug(message);
+        this.logger.debug(message);
     }
     info(message: string): void {
-        logger.info(message);
+        this.logger.info(message);
     }
     warn(message: string): void {
-        logger.warn(message);
+        this.logger.warn(message);
     }
     error(message: string): void {
-        logger.error(message);
+        this.logger.error(message);
     }
     fatal(message: string): void {
-        logger.fatal(message);
+        this.logger.fatal(message);
     }
 }
+
+export default new Logger();

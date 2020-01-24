@@ -25,7 +25,7 @@ export default class Map extends BaseEntity {
         type: "bytea",
         unique: true,
     })
-    hash!: Uint8Array;
+    hash!: Buffer;
 
     @Column("text")
     songName!: string;
